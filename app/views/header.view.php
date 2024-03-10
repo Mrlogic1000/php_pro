@@ -5,8 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Device Management System</title>
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
@@ -94,7 +96,7 @@
 
     <!-- modal -->
     
-    <div class="container">
+    <div class="container-fluid">
 <nav class="navbar navbar-dark navbar-expand-lg bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Navbar</a>
@@ -114,7 +116,7 @@
           <a class="nav-link" href="<?= ROOT?>/task">Task</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?= ROOT?>/user">User</a>
+          <a class="nav-link" href="<?= ROOT?>/profile">Profile</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="<?= ROOT?>/login">Login</a>

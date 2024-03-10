@@ -7,7 +7,6 @@ class Session{
 private function start_session():int{
     if(session_status() === PHP_SESSION_NONE){
         session_start();
-
     }
     return 1;
 

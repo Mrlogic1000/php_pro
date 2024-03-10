@@ -100,9 +100,8 @@ trait Model
         }
        
         $query = trim( $query,", ");  
-        $query .= " where $id_column = :$id_column";      
-       
-        echo $query;
+        $query .= " where $id_column = :$id_column";         
+        
         $data[$id_column] = $id;
        $this->query($query, $data);
        return false;
@@ -117,8 +116,16 @@ trait Model
     }
     public function validate($data){
         $this->errors = [] ;
-        if(!empty($this->validationRules)){
-            foreach($this->validationRules as $column => $rules){
+        if(!empty($this->primaryKey) && !empty($data[$this->primaryKey])){
+            $validationRules = $this->onUpdateValidationRules;
+
+        }else{
+            $validationRules = $this->onInsertValidationRules;
+
+        }
+       
+        if(!empty($validationRules)){
+            foreach($validationRules as $column => $rules){
                 if(!isset($data[$column]))
                     continue;
                 foreach($rules as $rule){                 

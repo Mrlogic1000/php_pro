@@ -21,7 +21,26 @@ class Users
     protected $table = "users";
     protected $primaryKey = 'email';
     protected $fillable = ['username', 'email', 'password',];
-    protected $validationRules = [
+
+    protected $onUpdateValidationRules = [
+        "email" => [
+            "email",
+            "unique",
+            "required",
+        ],
+        "password" => [
+            "not_less_than_8",
+            "required",
+        ],
+        "username" => [
+            "alpha_space",
+            "unique",
+            "required",
+
+        ],
+
+    ];
+    protected $onInsertValidationRules = [
         "email" => [
             "email",
             "unique",

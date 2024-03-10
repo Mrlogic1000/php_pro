@@ -1,4 +1,4 @@
-<?php include("Header.php"); ?>
+<?php $this->view('header',[]); ?>
 
 <div class="row mt-4">
             <div class="col-lg-12 d-flex justify-content-between align-items-center">
@@ -49,6 +49,6 @@
             </div>
         </div>
     </div>
-</body>
 
-</html>
+
+<?php $this->view('footer',[]); ?>

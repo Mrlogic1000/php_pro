@@ -18,6 +18,19 @@ class Pager
     public $a_class = "page-link";
     public $a_styles = "";
 
+    public $first_a_class ="page-link";
+    public $first_a_styles ="";
+    public $first_li_class = "page-item";
+    public $first_li_styles = "";
+    
+    public $next_a_class ="page-link";
+    public $next_a_styles ="";
+    public $next_li_class = "page-item";
+    public $next_li_styles = "";
+
+    public $active_class = "active";
+    public $active_styles = "";
+
     public function __construct($limit = 10, $extras = 1)
     {
         $page_number = isset($_GET['page']) ? (int) $_GET['page'] : 1;
@@ -57,18 +70,19 @@ class Pager
             <br class="clearfix">
             <div>
 
-                <nav class="<?= $this->nav_class ?>">
-                <ul class= "<?= $this->ul_class?>">
-                <li class = "<?=$this->li_class ?>"><a class="<?= $this->a_class ?>" href="<?= $this->links['first']?>">First</a></li>
+                <nav class="<?= $this->nav_class ?>" style="<?$this->nav_styles?>">
+                <ul class= "<?= $this->ul_class?>"  style="<?$this->ul_styles?>">
+                <li class = "<?=$this->first_li_class ?>" style="<?$this->first_li_styles?>"><a class="<?= $this->a_class ?>" href="<?= $this->links['first']?>">First</a></li>
                 
                 <?php for($x =$this->start; $x <= $this->end; $x++): ?>
-                <li class="<?=$this->li_class ?>
+                <li style="<?=$this->li_styles?>;<?=($x==$this->page_number)? $this->active_styles:'';?>" class="<?=$this->li_class?>
+                <?=($x == $this->page_number)? $this->active_class :'';?>                
                 <?=($x==$this->page_number)?'active ':'';?>
-                "><a class="<?=$this->a_class ?>" href="
+                "><a style="<?=$this->a_styles?>" clas=" <?=$this->a_class?>" href="                
                 <?= preg_replace('/page=[0-9]+/',"page=".$x, $this->links['current']) ?>
                 "><?=$x?></a></li>
             <?php endfor;?>
-            <li class="<?= $this->li_class?>"><a class="<?=$this->a_class?>" href="<?=$this->links['next'] ?>"></a></li>
+            <li class="<?= $this->next_li_class?>" style="<?$this->next_li_styles?>"><a style="<?=$this->next_a_styles?>" href="<?=$this->links['next'] ?>"></a></li>
             </ul>
                 </nav>
             </div>

@@ -1,7 +1,7 @@
 <?php
 namespace Controller;
 defined('ROOTPATH') OR exit("Access Denied");
-class Home
+class Student
 {
     use MainController;
     public function index()
@@ -11,15 +11,8 @@ class Home
        
         $data['devices'] = $devices->findAll();
 
-        
-        $file = 'img.jpg';
-        
-        $image = new \Model\Image();
-        $image->getThumbnail($file);
 
-
-
-     return $this->view("home", $data);
+     return $this->view('student', $data);
     }
 
 }

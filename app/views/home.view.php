@@ -1,5 +1,4 @@
-
-    <?php include("Header.php"); ?>
+<?php $this->view('header',[]); ?>
 
 
        

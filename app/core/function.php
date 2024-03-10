@@ -26,6 +26,15 @@ function check_extension()
         die("Please load the following extension in your php.ini file. <br/>" . implode("<br/>", $not_loaded));
     }
 }
+function user(string $key = ''){
+    $ses = new \Core\Session();
+    $row = $ses->user();
+    if(!empty($row->$key)){
+        return $row->$key;
+    }
+    return $row;
+
+}
 function redirect($url)
 {
     header("Location: " . ROOT . "/" . $url);
@@ -42,10 +51,10 @@ function get_image(mixed $file = '', string $type = 'post'): string
         return ROOT . "/" . $file;
     }
     if ($type == 'user') {
-        return ROOT . "/assets/images/user.jpg";
+        return ROOT . "/assets/images/user.webp";
 
     } else {
-        return ROOT . "/assets/images/no_image.jpg";
+        return ROOT . "/assets/images/no_image.png";
     }
 }
 
