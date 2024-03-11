@@ -38,33 +38,41 @@ class Pager
 
         $this->end = $page_number + $extras;
         $this->start = $page_number - $extras;
+
         if ($this->start < 1)
             $this->start = 1;
 
         $this->offset = ($page_number - 1) * $this->limit;
         $this->page_number = $page_number;
+       
         $this->limit = $limit;
-
+        
         $url = isset($_GET['url']) ? $_GET['url'] : '';
-        $current_link = ROOT . "/" . $url . "?" . trim(str_replace("url=", "", str_replace($url, "", $_SERVER['QUERY_STRING'])), '$');
+        
+        $current_link = ROOT . "/" . $url . "?" . trim(str_replace("url=", "", str_replace($url, "", $_SERVER['QUERY_STRING'])), '&');
+        
         $current_link = !strstr($current_link, "page=") ? $current_link . "&page=1" : $current_link;
+        
 
-        if (strstr($current_link, "?")) {
+        if (!strstr($current_link, "?")) {
             $current_link = str_replace("&page=", "?page=", $current_link);
         }
-        $first_link = preg_replace('/page=[0-9]+/', "page=1", $current_link);
+       
+        $first_link = preg_replace('/page=[0-9]+/', "page=1", $current_link);       
         $next_link = preg_replace("/page=[0-9]+/", "page=" . ($page_number + $extras + 1), $current_link);
 
         $this->links['first'] = $current_link;
         $this->links['current'] = $next_link;
         $this->links['next'] = $next_link;
+        print_r($this->links);
 
     }
     public function display($record_count = null)
     {
-        if ($record_count == null)
-            $record_count = $this->$this->limit;
-
+        if ($record_count == null){            
+            $record_count = $this->limit;
+        }
+            
         if ($record_count == $this->limit || $this->page_number > 1) {
             ?>
             <br class="clearfix">
@@ -82,7 +90,7 @@ class Pager
                 <?= preg_replace('/page=[0-9]+/',"page=".$x, $this->links['current']) ?>
                 "><?=$x?></a></li>
             <?php endfor;?>
-            <li class="<?= $this->next_li_class?>" style="<?$this->next_li_styles?>"><a style="<?=$this->next_a_styles?>" href="<?=$this->links['next'] ?>"></a></li>
+            <li class="<?= $this->next_li_class?>" style="<?$this->next_li_styles?>"><a style="<?=$this->next_a_styles?>" href="<?=$this->links['next'] ?>">Next</a></li>
             </ul>
                 </nav>
             </div>

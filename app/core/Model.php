@@ -6,8 +6,8 @@ trait Model
 {
     use \Model\Database;
     
-    protected $limit = 10;
-    protected $offset = 0;
+    public $limit = 10;
+    public $offset = 0;
     protected $errors = [];
     protected function getPrimaryKey(){
         return $this->primaryKey ?? 'id';

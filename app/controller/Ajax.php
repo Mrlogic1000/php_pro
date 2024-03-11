@@ -31,7 +31,8 @@ class Ajax
                 $info['data_type'] = 'profile-image';
                 $image_row = $req->files('image');
 
-                if($image_row['error'] == 0){
+
+                if(!empty($image_row['error']) && $image_row['error'] == 0){
 
                     $folder = 'upload/';
                 if(!file_exists($folder)){
@@ -60,10 +61,30 @@ class Ajax
             }else{
                 if($data_type == 'create-post'){
                     $id = user('id');
+                    $info['data_type'] = 'profile-image';
+                    $image_row = $req->files('image');
+    
+                    if($image_row['error'] == 0){
+    
+                        $folder = 'upload/';
+                    if(!file_exists($folder)){
+                         mkdir($folder,0777,true);
+                        }
+                    
+                     $destination = $folder. time() . $image_row['name'];
+                     move_uploaded_file($image_row['tmp_name'],$destination); 
+    
+                     $image_resize = new Image();
+                     $image_resize->resize($destination,1000);   
+                     
+    
+                    }     
+    
                     $post = new Post;
                     $arr = [];
                    
                     $arr['post'] = $req->input('post');                    
+                    $arr['image'] = $destination ?? '';
                     $arr['user_id'] = $id;
                     $arr['date'] = date("Y-m-d H:i:s");
                     if($post->validate($arr)){                        
