@@ -1,6 +1,7 @@
 <?php
 defined('ROOTPATH') OR exit("Access Denied");
-spl_autoload_register(function ($class) {     
+spl_autoload_register(function ($class) { 
+    // echo $class;    
     $class = explode("\\", $class);
     $class = end($class);    
     require  "../app/model/".ucfirst($class).".php" ;

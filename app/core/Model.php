@@ -34,11 +34,10 @@ trait Model
            
         }
         foreach ($key_not as $k){
-            $query .= $k ." != :".$k . " && ";
-           
+            $query .= $k ." != :".$k . " && ";           
         }
         $query = trim( $query," && ");
-        $query .= " limit $this->limit offset $this->offset";
+        $query .= " limit $this->limit offset $this->offset";        
         // marge data because only one variable supply in the database class/trait
         $data = array_merge($data, $data_not);
        return $this->query($query, $data);

@@ -11,12 +11,13 @@ class Profile
     public function index()
     {
       
-      $id = user('id');
+      $id = URL('slug') ?? user('id');
       $ses = new Session;
 
-      $limit = 1;
+      $limit = 10;
       $data['pager'] = new Pager($limit);
       $offset = $data['pager']->offset;
+      
 
 
       if(!$ses->is_logged_in()){
@@ -29,7 +30,7 @@ class Profile
      if($data['row']){
        $post = new Post;
        $post->limit = $limit;
-       $post->offset = $offset;
+       $post->offset = $offset;       
        $data['posts'] = $post->where(['user_id'=>$row->id]);       
        if($data['posts']){
         $data['posts'] = $post->add_user_data($data['posts']);

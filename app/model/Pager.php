@@ -3,7 +3,7 @@ namespace Core;
 class Pager
 {
     public $links = array();
-    public $offset = 0;
+    public $offset = 0;   
     public $page_number = 1;
     public $start = 1;
     public $end = 1;
@@ -31,9 +31,10 @@ class Pager
     public $active_class = "active";
     public $active_styles = "";
 
-    public function __construct($limit = 10, $extras = 1)
+    public function __construct($limit=10, $extras = 1)
     {
-        $page_number = isset($_GET['page']) ? (int) $_GET['page'] : 1;
+        $page_number = isset($_GET['page']) ? (int) $_GET['page'] : 1;        
+        
         $page_number = $page_number < 1 ? 1 : $page_number;
 
         $this->end = $page_number + $extras;
@@ -42,7 +43,8 @@ class Pager
         if ($this->start < 1)
             $this->start = 1;
 
-        $this->offset = ($page_number - 1) * $this->limit;
+        $this->offset = ($page_number - 1) * $limit;
+        
         $this->page_number = $page_number;
        
         $this->limit = $limit;
@@ -51,20 +53,22 @@ class Pager
         
         $current_link = ROOT . "/" . $url . "?" . trim(str_replace("url=", "", str_replace($url, "", $_SERVER['QUERY_STRING'])), '&');
         
-        $current_link = !strstr($current_link, "page=") ? $current_link . "&page=1" : $current_link;
-        
+      
+        $current_link = !strstr($current_link, "page=") ? $current_link . "&page=1" : $current_link;       
 
         if (!strstr($current_link, "?")) {
             $current_link = str_replace("&page=", "?page=", $current_link);
         }
        
-        $first_link = preg_replace('/page=[0-9]+/', "page=1", $current_link);       
+        $first_link = preg_replace('/page=[0-9]+/', "page=1", $current_link);   
+          
         $next_link = preg_replace("/page=[0-9]+/", "page=" . ($page_number + $extras + 1), $current_link);
 
-        $this->links['first'] = $current_link;
-        $this->links['current'] = $next_link;
+        $this->links['first'] = $first_link;        
+        $this->links['current'] = $current_link;
         $this->links['next'] = $next_link;
-        print_r($this->links);
+       
+        
 
     }
     public function display($record_count = null)
@@ -80,7 +84,8 @@ class Pager
 
                 <nav class="<?= $this->nav_class ?>" style="<?$this->nav_styles?>">
                 <ul class= "<?= $this->ul_class?>"  style="<?$this->ul_styles?>">
-                <li class = "<?=$this->first_li_class ?>" style="<?$this->first_li_styles?>"><a class="<?= $this->a_class ?>" href="<?= $this->links['first']?>">First</a></li>
+                <li class = "<?=$this->first_li_class ?>" style="<?$this->first_li_styles?>">
+                <a class="<?= $this->a_class ?>" href="<?= $this->links['first']?>">First</a></li>
                 
                 <?php for($x =$this->start; $x <= $this->end; $x++): ?>
                 <li style="<?=$this->li_styles?>;<?=($x==$this->page_number)? $this->active_styles:'';?>" class="<?=$this->li_class?>
@@ -99,3 +104,4 @@ class Pager
 
     }
 }
+?>

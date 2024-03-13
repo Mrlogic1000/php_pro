@@ -91,6 +91,7 @@
         </div>
 
     </div>
+    
     <script>
          var post_image_added = false;
     function change_image(file) {
@@ -156,18 +157,18 @@
     }
 
     function handle_result(result) {
-        let obj = JSON.parse(result);
+        // let obj = JSON.parse(result);
         console.log(result);
 
-        if (obj.data_type == "profile-image") {
-            alert(obj.message);
-            window.location.reload();
-        } else {
-            if (obj.data_type == "create-post") {
-                alert(obj.message);
-                window.location.reload();
-            }
-        }
+        // if (obj.data_type == "profile-image") {
+        //     alert(obj.message);
+        //     window.location.reload();
+        // } else {
+        //     if (obj.data_type == "create-post") {
+        //         alert(obj.message);
+        //         window.location.reload();
+        //     }
+        // }
 
     }
     </script>

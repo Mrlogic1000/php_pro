@@ -1,16 +1,16 @@
 <?php
 namespace Controller;
 defined('ROOTPATH') OR exit("Access Denied");
-class {CLASSNAME}
+class Order
 {
     use MainController;
     public function index()
     {
         $data = [];
-        echo "{classname}";
+        echo "order";
 
 
-     return $this->view('{classname}', $data);
+     return $this->view('order', $data);
     }
 
 }

@@ -10,7 +10,7 @@ class Ajax
     use MainController;
     public function index()
     {
-    //   die('Ajax');
+      
         $ses = new \Core\Session;        
         if(!$ses->is_logged_in()){
            
@@ -25,15 +25,16 @@ class Ajax
         $info['message'] = '';
         if($req->posted()){            
 
-           $data_type = $req->input('data_type');    
+
+           $data_type = $req->input('data_type');  
+              
 
             if($data_type == 'profile-image'){
+                
                 $info['data_type'] = 'profile-image';
-                $image_row = $req->files('image');
-
-
-                if(!empty($image_row['error']) && $image_row['error'] == 0){
-
+                $image_row = $req->files('image');  
+                print_r($image_row);             
+                if($image_row['error'] == 0){                    
                     $folder = 'upload/';
                 if(!file_exists($folder)){
                      mkdir($folder,0777,true);
