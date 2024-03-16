@@ -34,6 +34,7 @@ class Home
        $data['posts'] = $post->findAll(['user_id'=>$row->id]);       
        if($data['posts']){
         $data['posts'] = $post->add_user_data($data['posts']);
+        // print_r($data['posts']);
 
        }
      } 

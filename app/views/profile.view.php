@@ -5,9 +5,9 @@
         <span>
             <img class="profile-image rounded-circle m-4" src="<?= get_image($row->image)?>"
                 style=" height: 200px; width:200px; object-fit:cover;" alt="...">
-                
-                <?php if(user('id')== $row->id): ?>
-                    
+
+            <?php if(user('id')== $row->id): ?>
+
             <label>
                 <i style="position:absolute; cursor:pointer;" class="h1 text-primary bi bi-image"></i>
                 <input type="file" onchange="display_image(this.files[0]); " class="d-none" name="">
@@ -23,7 +23,6 @@
 
         <!-- Ajax -->
         <script>
-           
         function display_image(file) {
             let allowed = ['jpg', 'png', 'jpeg', 'webp'];
             let ext = file.name.split('.').pop();
@@ -47,29 +46,30 @@
             document.querySelector(".post-image").parentNode.classList.remove('d-none');
             post_image_added = true;
 
-            
+
         }
         </script>
     </div>
     <div>
-    <?php if(user('id')== $row->id): ?>
-                    
+        <?php if(user('id')== $row->id): ?>
+
         <form method="post" onsubmit="submit_post(event)">
             <div class="bg-secondary p-2">
                 <textarea id="post_input" name="" row=6 class="form-control"
                     placeholder="What is on your mind?"></textarea>
 
-                    <?php if(user('id')== $row->id): ?>
-                    <label>
-                        <i style="cursor:pointer;" class="h1 text-white bi bi-image"></i>
-                        <input id="post-image-input" type="file" onchange="display_post_image(this.files[0]); " class="d-none" name="">
-                    </label>
-                    <?php endif ?>
-                    <button class=' mt-1 btn btn-warning float-end'>Post</button>
-                    <div class="text-center d-none">
-                        <img class="post-image m-1" src="" style=" height: 100px; width:100px; object-fit:cover;" alt="...">
-                    </div>
-                    <div class="clearfix"></div>
+                <?php if(user('id')== $row->id): ?>
+                <label>
+                    <i style="cursor:pointer;" class="h1 text-white bi bi-image"></i>
+                    <input id="post-image-input" type="file" onchange="display_post_image(this.files[0]); "
+                        class="d-none" name="">
+                </label>
+                <?php endif ?>
+                <button class=' mt-1 btn btn-warning float-end'>Post</button>
+                <div class="text-center d-none">
+                    <img class="post-image m-1" src="" style=" height: 100px; width:100px; object-fit:cover;" alt="...">
+                </div>
+                <div class="clearfix"></div>
             </div>
         </form>
         <?php endif ?>
@@ -82,7 +82,6 @@
         <div class="my-3">
             <?php if(!empty($posts)): ?>
             <?php foreach($posts as $post): ?>
-            <!-- <?php print_r($post->user->username) ?> -->
             <?php $this->view("post-small",['post'=>$post])?>
             <?php endforeach; ?>
             <?php endif; ?>
@@ -91,9 +90,10 @@
         </div>
 
     </div>
-    
+
     <script>
-         var post_image_added = false;
+    var post_image_added = false;
+
     function change_image(file) {
         var obj = {};
         obj.image = file;
@@ -108,11 +108,11 @@
     function submit_post(e) {
         e.preventDefault();
         var obj = {};
-        if(post_image_added){
-            obj.image       =  e.currentTarget.querySelector("#post-image-input").files[0];;
+        if (post_image_added) {
+            obj.image = e.currentTarget.querySelector("#post-image-input").files[0];;
 
         }
-        
+
         obj.data_type = "create-post";
         obj.post = e.currentTarget.querySelector("#post_input").value;
         obj.id = "<?=user('id')?>";

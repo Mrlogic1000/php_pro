@@ -8,10 +8,10 @@ use  \Model\Post;
 class Profile
 {
     use MainController;
-    public function index()
+    public function index($id=null)
     {
       
-      $id = URL('slug') ?? user('id');
+      // $id = URL('slug') ?? user('id');
       $ses = new Session;
 
       $limit = 10;
@@ -26,6 +26,7 @@ class Profile
       }
       $user = new Users;
       $data['row'] = $row = $user->first(['id'=>$id]);
+   
 
      if($data['row']){
        $post = new Post;

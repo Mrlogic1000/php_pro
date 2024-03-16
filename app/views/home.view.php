@@ -19,8 +19,7 @@
 
         <div class="col-md-10 my-3">
             <?php if(!empty($posts)): ?>
-            <?php foreach($posts as $post): ?>
-            <!-- <?php print_r($post->user->username) ?> -->
+            <?php foreach($posts as $post): ?>           
             <?php $this->view("post-small",['post'=>$post])?>
             <?php endforeach; ?>
             <?php endif; ?>

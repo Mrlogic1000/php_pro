@@ -11,26 +11,21 @@
 
         <p><?= $post->post?></p>
         <?php if(!empty($post->image)):?>
-        <a href="<?= ROOT?>/post/<?=$post->id?>">
-            <img class="m-1" src="<?= get_image($post->image)?>" style=" height: 50%; width:100px; object-fit:cover;">
-        </a>
+        <img class="m-1" src="<?= get_image($post->image)?>" style=" height: 50%; ">
         <?php endif?>
     </div>
     <div>
-       
-        <a href="<?= ROOT?>/post/edit/<?=$post->id?>">
-            <?php if(user('id') == $post->user_id): ?>
+    <?php if(user('id')== $post->user_id): ?>
+        <a href="<?= ROOT?>/post/edit<?=$post->id?>">
             <button class="btn-sm btn m-1 btn-warning">Edit</button>
         </a>
 
-        <a href="<?= ROOT?>/post/delete/<?=$post->id?>">
+        <a href="<?= ROOT?>/post/delete<?=$post->id?>">
             <button class="btn-sm btn m-1 btn-danger">Delete</button>
         </a>
         <?php endif; ?>
-        <a href="<?= ROOT?>/post/<?=$post->id?>">
-            <button class="btn-sm btn m-1 btn-primary">Comments</button>
-        </a>
+       
     </div>
-
+        
 </div>
 <hr>

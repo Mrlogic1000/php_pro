@@ -116,7 +116,8 @@
         <div class="dropdown text-end">
           <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
             <img src="<?=get_image(user('image'))?>" alt="mdo" width="32" height="32" class="rounded-circle">
-          </a>
+            <?=  user('username'); ?> 
+        </a>
           <ul class="dropdown-menu text-small">            
             <li><a class="dropdown-item" href="<?=ROOT?>/setting">Setting</a></li>
             <li><a class="dropdown-item" href="<?=ROOT?>/profile">Profile</a></li>
@@ -127,3 +128,4 @@
       </div>
     </div>
   </header>
+ 
